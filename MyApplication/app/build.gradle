@@ -1,0 +1,73 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+apply plugin: 'kotlin-android'
+
+repositories {
+    google()
+    mavenCentral()
+
+    String storageUrl = "https://storage.googleapis.com"
+    maven {
+        url '../../sdk'
+    }
+    maven {
+        url "$storageUrl/download.flutter.io"
+    }
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.sabin.myapplication"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        profile {
+            initWith debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    buildFeatures{
+        dataBinding true
+        viewBinding true
+    }
+    namespace 'com.sabin.myapplication'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.test:runner:1.5.2'
+    implementation 'androidx.test:rules:1.5.0'
+    implementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+    debugImplementation 'androidx.test.ext:junit:1.1.5'
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    debugImplementation 'com.example.flutter_module:flutter_debug:1.0'
+    profileImplementation 'com.example.flutter_module:flutter_profile:1.0'
+    releaseImplementation 'com.example.flutter_module:flutter_release:1.0'
+}
