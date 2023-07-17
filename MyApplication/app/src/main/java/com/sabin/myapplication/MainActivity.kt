@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         warmupFlutterEngine()
-        print('Hello')
-
         btn = findViewById(R.id.btn)
         btn.setOnClickListener {    runFlutterNPS()}
 
